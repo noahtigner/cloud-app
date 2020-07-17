@@ -1,0 +1,15 @@
+body {
+    background-color: rgb(230, 220, 220);
+    padding: 0;
+    margin: 0;
+    color: rgb(26, 26, 26);
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    overscroll-behavior-y: contain;
+    text-align: center;
+}
+
+body::-webkit-scrollbar { width: 0 }
+body::-webkit-scrollbar {display: none;}
+body { overflow: -moz-scrollbars-none; }
+body { -ms-overflow-style: none; }
