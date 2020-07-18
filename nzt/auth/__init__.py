@@ -21,13 +21,15 @@ def register():
             error = 'Username is required.'
         elif not password:
             error = 'Password is required.'
-        elif db_query('SELECT id FROM user WHERE username = ?', (username,), unique=True) is not None:
+        elif db_query(f"""SELECT * FROM "user" WHERE username='{username}' """, unique=True) is not None:
             error = 'User {} is already registered.'.format(username)
 
         if error is None:
             db_query(
-                'INSERT INTO user (username, password) VALUES (?, ?)',
-                (username, generate_password_hash(password))
+                f"""
+                INSERT INTO "user" (username, password) 
+                VALUES ('{username}', '{generate_password_hash(password)}')
+                """
             )
             return redirect(url_for('auth.login'))
 
@@ -42,7 +44,7 @@ def login():
         password = request.form['password']
         error = None
 
-        user = db_query('SELECT * FROM user WHERE username = ?', (username,), unique=True)
+        user = db_query(f"""SELECT * FROM "user" WHERE username='{username}' """, unique=True)
 
         if user is None:
             error = 'Incorrect username.'
@@ -70,7 +72,7 @@ def load_logged_in_user():
     if user_id is None:
         g.user = None
     else:
-        g.user = db_query('SELECT * FROM user WHERE id = ?', (user_id,), unique=True)
+        g.user = db_query(f"""SELECT * FROM "user" WHERE id='{user_id}' """, unique=True)
 
 def login_required(view):
     @functools.wraps(view)

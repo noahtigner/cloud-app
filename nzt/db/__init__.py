@@ -1,75 +1,89 @@
 import sys
-import sqlite3
+import psycopg2
+import psycopg2.extras
 from flask import current_app, g
 from flask.cli import with_appcontext
-    
+
+from nzt.util import config
+
 def init_app(application):
     application.teardown_appcontext(db_close)
     db_init()
 
 def db_get():
-    if 'db' not in g:
-        g.db = sqlite3.connect(
-            current_app.config['DATABASE'],
-            detect_types=sqlite3.PARSE_DECLTYPES
-        )
-        g.db.row_factory = sqlite3.Row
-
-    return g.db
+    if 'db3' not in g:
+        print("DATABASE: opening database connection")
+        g.db3 = psycopg2.connect(**config["database"])
+    else:
+        print("DATABASE: accessing database connection")
+    return g.db3
 
 def db_init():
+    print("DATABASE: initializing database control")
     db = db_get()
+    db_create_tables()
 
+def db_create_tables():
+    print("DATABASE: creating tables")
+    commands = (
+        """
+        CREATE TABLE IF NOT EXISTS "user" (
+            id SERIAL PRIMARY KEY,
+            username VARCHAR(255) UNIQUE NOT NULL,
+            password VARCHAR(255) NOT NULL
+        )
+        """,
+        """ 
+        CREATE TABLE IF NOT EXISTS "visits" (
+            ip VARCHAR(255) PRIMARY KEY NOT NULL,
+            count INTEGER NOT NULL,
+            latest TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+        )
+        """
+    )
 
-    exists = db_query("SELECT name FROM sqlite_master WHERE type='table' AND name=?", ("user",))
-    if not exists:
-        with current_app.open_resource("../schema.sql") as f:
-            db.executescript(f.read().decode("utf8"))
-        print("Creating DB", file=sys.stderr)   
+    try:
+        db = db_get()
+        c = db.cursor()
 
-    # try:
-    #     db.execute(
-    #                 'INSERT INTO user (username, password) VALUES (?, ?)',
-    #                 ("Noah", "pass123")
-    #             )
-    #     db.execute(
-    #             'INSERT INTO user (username, password) VALUES (?, ?)',
-    #             ("James", "pass123")
-    #         )
-    #     db.commit()
-    # except Exception:
-    #     pass
+        for command in commands:
+            c.execute(command)
 
-    # try:
-        
-    #     users = db_query('SELECT * FROM user')
-    #     print(users[-1]['password'], file=sys.stderr)
-    #     users = db_query('SELECT * FROM user WHERE id=?', (1,))
-    #     print(users[0]['password'], file=sys.stderr)
-
-    #     if users is None:
-    #         print("ERROR\n\n", file=sys.stderr)
-    # except sqlite3.OperationalError:
-    #     print("ERROR\n\n", file=sys.stderr)
+        c.close()
+        db.commit()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print("DATABASE: ERROR: " + error, color="red")
+        db.rollback()
 
 def db_close(e=None):
-    db = g.pop("db", None)
+    print("DATABASE: closing connection")
+    db = g.pop("db3", None)
 
     if db is not None:
         db.close()
 
 def db_query(statement, params=None, unique=False):
-    db = db_get()
-    c = db.cursor()
+    print(f"DATABASE: executing statement: {statement}")
+    results = []
+    try:
+        db = db_get()
+        c = db.cursor(cursor_factory = psycopg2.extras.DictCursor)
 
-    if params and unique:
-        results = c.execute(statement, params).fetchone()
-    elif params:
-        results = c.execute(statement, params).fetchall()
-    elif unique:
-        results = c.execute(statement).fetchone()
-    else:
-        results = c.execute(statement).fetchall()
-    db.commit()
-    
-    return results
+        if params:
+            c.execute(statement, params)
+        else:
+            c.execute(statement)
+
+        db.commit()
+
+        if unique:
+            results = c.fetchone()
+        else:
+            results = [row for row in c.fetchall()]
+
+    except (Exception, psycopg2.DatabaseError) as error:
+        print("DATABASE: ERROR: " + error, color="red")
+        db.rollback()
+    finally:
+        c.close()
+        return results
