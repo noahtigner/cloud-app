@@ -18,5 +18,452 @@
 
     <title>Noah Tigner</title>
 </head>
-Noah Tigner
+<body>
+    <div class="header">
+        <ol class='navbar'>
+            <li class='logo' style="float:left">Noah Tigner</li>
+            <li><a href="#footer">Contact</a></li>
+            <li><a href="#Experience">Experience</a></li>
+            <li><a href="#Skills">Skills</a></li>
+            <li><a href="#Portfolio">Portfolio</a></li>
+            <li class='small' style='display: none;'>Noah Tigner</li>
+        </ol>
+        <div class="progress-container">
+            <div class="progress-bar" id="myBar"></div>
+        </div> 
+    </div>
+
+    <!-- <br/> -->
+
+    <!-- TODO: scroll down indicator -->
+
+    <!-- <div class='section'>
+        <hr class='line'/>
+        <h1 id='Portfolio'>About Me</h1>
+        <hr class='line'/>
+    </div> -->
+
+    <div class='about'>
+        I'm a Software Engineer studying at the University of Oregon<br/>
+        Currently pursuing degrees in Computer Science & Spatial Data Science<br/>
+        I enjoy building things and getting lost in the woods
+    </div>
+
+    <div class='section'>
+        <hr class='line'/>
+        <h1 id='Portfolio'>Portfolio</h1>
+        <hr class='line'/>
+    </div>
+
+    <div class='cardRow'>
+
+        <div class='cardColumn'>
+            <div class='card'>
+                <div class='cardUpper'>
+                    <img src={{ url_for('static', filename='images/sitestall2.png') }} alt='Pic' width='100%' height='100%'>
+                    <span class="single"><a href='https://github.com/SiteStall/SiteStall' target='_blank'>Git Repository</a></span>
+                </div>
+
+                <div class='cardLower'>
+                    <span style='letter-spacing: 2px; font-size: 18px;'>SiteStall</span>
+                    <div class='arrow'>>></div>
+
+                    <p class='cardText'>
+                        A Firefox extension that improves concentration. 
+                        A modern implementation of Dr. Richard Patterson's ideal "commitment device".
+                    </p>
+                </div>
+                <ul class='cardLanguages'>
+                    <li>JavaScript</li>
+                    <li>HTML/CSS</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class='cardColumn'>
+            <div class='card'>
+                <div class='cardUpper'>
+                    <img src={{ url_for('static', filename='images/icelandVis1.png') }} alt='Pic' width='100%' height='100%'>
+                    <span class="double">
+                        <a href='https://github.com/noahtigner/IcelandVisualization' target='_blank'>Git Repository</a>
+                        <br>
+                        <a href='https://youtu.be/YKv8r7G7pbc' target='_blank'>Youtube Video</a>
+                    </span>
+                </div> 
+
+                <div class='cardLower'>
+                    <span style='letter-spacing: 2px; font-size: 18px;'>GeoSpatial Visualization</span>
+                    <div class='arrow'>>></div>
+
+                    <p class='cardText'>
+                        A geospatial visualization of Iceland. Rendered with VisIt, automated with Python, video processed with ffmpeg.
+                        Available on Youtube.
+                    </p>
+                </div>
+                <ul class='cardLanguages'>
+                    <li>Python</li>
+                    <li>C++</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class='cardColumn'>
+                <div class='card'>
+                    <div class='cardUpper'>
+                        <img src={{ url_for('static', filename='images/discoverdaily.png') }} alt='Pic' width='100%' height='100%'>
+                        <span class="single"><a href='https://github.com/noahtigner/DiscoverDaily' target='_blank'>Git Repository</a></span>
+                    </div>
+
+                    <div class='cardLower'>
+                        <span style='letter-spacing: 2px; font-size: 18px;'>Discover Daily</span>
+                        <div class='arrow'>>></div>
+    
+                        <p class='cardText'>
+                            A Spotify Recommender System.
+                            <br>
+                            Trains a Classifier on your musical tastes and recommends songs daily.
+
+                            Uses the Spotify API and scikit-learn for machine learning.
+                        </p>
+                    </div>
+                    <ul class='cardLanguages'>
+                        <li>Python</li>
+                        <li>SQL</li>
+                    </ul>
+                </div>
+        </div>
+
+        <div class='cardColumn hide3'>
+            <div class='card'>
+                <div class='cardUpper'>
+                    <img src={{ url_for('static', filename='images/pricedrop.png') }} alt='Pic' width='100%' height='100%'>
+                    <span class="single"><a href='https://bitbucket.org/noahtigner/pricedrop/src/master/' target='_blank'>Git Repository</a></span>
+                </div>
+                
+                <div class='cardLower'>
+                    <span style='letter-spacing: 2px; font-size: 18px;'>PriceDrop</span>
+                    <div class='arrow'>>></div>
+
+                    <p class='cardText'>
+                        Compares current deals for an amazon product to historic prices 
+                        and notifies you in case of a good deal.
+                        Uses BeautifulSoup, SQLite, and SMTPlib for email notifications.
+                    </p>
+                </div>
+                <ul class='cardLanguages'>
+                    <li>Python</li>
+                    <li>SQL</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class='cardColumn hide3 hide4'>
+            <div class='card'>
+                <div class='cardUpper'>
+                    <img src={{ url_for('static', filename='images/sankey.png') }} alt='Pic' width='100%' height='100%'>
+                    <span class="double">
+                        <a href='https://github.com/noahtigner/BudgetVis' target='_blank'>Git Repository</a>
+                        <br>
+                        <a href='sankey.html' target='_blank'>Web Page</a>
+                    </span>
+                </div>                
+
+                <div class='cardLower'>
+                    <span style='letter-spacing: 2px; font-size: 18px;'>BudgetVis</span>
+                    <div class='arrow'>>></div>
+                    <p class='cardText'>
+                        A tool for visualizing your budget.
+                        Written in JavaScript with JQuery and Ajax.
+                        Graphed with D3.js.
+                    </p>
+                </div>
+                <ul class='cardLanguages'>
+                    <li>JavaScript</li>
+                    <li>HTML/CSS</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class='cardColumn hide3 hide4'>
+            <div class='card'>
+                <div class='cardUpper'>
+                    <img src={{ url_for('static', filename='images/blue.png') }} alt='Pic' width='100%' height='100%'>
+                    <span class="single"><a href='https://github.com/noahtigner/Blue' target='_blank'>Git Repository</a></span>
+                </div>
+
+                <div class='cardLower'>
+                    <span style='letter-spacing: 2px; font-size: 18px;'>Blue</span>
+                    <div class='arrow'>>></div>
+                    <p class='cardText'>
+                        A polyphonic, MIDI capable audio synthesizer. 
+                        Written with the JUCE audio framework.
+                    </p>
+                </div>
+                <ul class='cardLanguages'>
+                    <li>C++</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class='cardColumn hide3 hide4'>
+            <div class='card'>
+                <div class='cardUpper'>
+                    <img src={{ url_for('static', filename='images/CSLG.png') }} alt='Pic' width='100%' height='100%'>
+                    <span class="single"><a href='https://bitbucket.org/ckolln/cslifeguide-330/src/master/' target='_blank'>Git Repository</a></span>
+                </div>
+                <div class='slider one'>
+                    <a class='slida' href='https://bitbucket.org/ckolln/cslifeguide-330/src/master/' target='_blank'>Git Repository</a>
+                </div>
+                <div class='cardLower'>
+                    <span style='letter-spacing: 2px; font-size: 18px;'>CS Course Guide</span>
+                    <div class='arrow'>>></div>
+                    <p class='cardText'>
+                        A personalizable degree guide for CS students.
+                        
+                        Written with QT and SQLite in collaboration with 3 other developers.
+                    </p>
+                </div>
+                <ul class='cardLanguages'>
+                    <li>C++</li>
+                    <li>SQL</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class='cardColumn hide3 hide4'>
+            <div class='card'>
+                <div class='cardUpper'>
+                    <img src={{ url_for('static', filename='images/brevets.png') }} alt='Pic' width='100%' height='100%'>
+                    <span class="double">
+                        <a href='https://bitbucket.org/noahtigner/acp-brevet-control-times-calculator/src/master/' target='_blank'>Git Repository</a>
+                        <br>
+                        <a href='https://bitbucket.org/noahtigner/acp-brevet-control-times-calculator/src/master/README.md' target='_blank'>Deployment Instructions</a>
+                    </span>
+                </div>
+               
+                <div class='cardLower'>
+                    <span style='letter-spacing: 2px; font-size: 18px;'>ACP Brevet Calculator</span>
+                    <div class='arrow'>>></div>
+                    <p class='cardText'>
+                        A Full-Stack ACP calculator for Randonneurs USA.
+
+                        Packaged as an API. 
+
+                        Includes authorization/security, testing, etc.
+                        
+                        Written with Flask, PyMongo, and JQuery.
+                    </p>
+                </div>
+                <ul class='cardLanguages'>
+                    <li>Python</li>
+                    <li>JS/HTML/CSS</li>
+                    <li>PHP</li>
+                    <li>NoSQL</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class='cardColumn hide3 hide4'>
+            <div class='card'>
+                <div class='cardUpper'>
+                    <img src={{ url_for('static', filename='images/snake.gif') }} alt='Pic' width='100%' height='100%'>
+                    <span class="double">
+                        <a href='https://github.com/noahtigner/snake' target='_blank'>Git Repository</a>
+                        <br>
+                        <a href='snake.html' target='_blank'>Web Page</a>
+                    </span>
+                </div>
+
+                <div class="cardCover"></div>
+                <div class='cardLower'>
+                    <span style='letter-spacing: 2px; font-size: 18px;'>Snake</span>
+                    <div class='arrow'>>></div>                    
+                    <!-- <div class='arrow'>>></div> -->
+                    <p class='cardText'>
+                        A spin on the classic snake game, complete with a retro re-design and adversaries that track you down.
+                        
+                        Written with Vanilla JavaScript.
+                    </p>
+                </div>
+                <ul class='cardLanguages'>
+                    <li>JavaScript</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <button class="button">More</button>
+
+    <div class='section'>
+        <hr class='line'/>
+        <h1 id='Skills'>Skills</h1>
+        <hr class='line'/>
+    </div>
+
+
+    <div class='skillRow'>
+
+        <div class='skillColumn'>
+            <div class='skill'>
+                <div class='skill-container'>    
+                    <div class='skillName'>Back-End</div>
+
+                    <p>C</p>
+                    <div class="container">
+                        <div class="skills proficient">Personal Projects</div>
+                    </div>
+                
+                    <p>C++<span style='color: rgb(78, 78, 78);'>&nbsp;&nbsp;Qt, JUCE</span></p>
+                    <div class="container">
+                        <div class="skills proficient">Personal Projects</div>
+                    </div>
+                
+                    <p>Java<span style='color: rgb(78, 78, 78);;'>&nbsp;&nbsp;Spring, Hibernate</span></p>
+                    <div class="container">
+                        <div class="skills advanced">Professional Experience</div>
+                    </div>
+                
+                    <p>Python<span style='color: rgb(78, 78, 78);;'>&nbsp;&nbsp;Flask, Scikit-learn . . .</span></p>
+                    <!-- Flask, Pandas, BeautifulSoup, Selenium, Scikit-learn, MatPlotLib, SMTPlib  -->
+                    <div class="container">
+                        <div class="skills advanced">Professional Experience</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class='skillColumn'>
+            <div class='skill'>
+                <div class='skill-container'>    
+                    <div class='skillName'>Front-End</div>
+
+                    <p>HTML</p>
+                    <div class="container">
+                        <div class="skills advanced">Professional Experience</div>
+                    </div>
+                
+                    <p>CSS<span style='color: rgb(78, 78, 78);;'>&nbsp;&nbsp;Bootstrap</span></p>
+                    <div class="container">
+                        <div class="skills advanced">Professional Experience</div>
+                    </div>
+                
+                    <p>JavaScript<span style='color: rgb(78, 78, 78);;'>&nbsp;&nbsp;JQuery, Ajax, D3.js</span></p>
+                    <div class="container">
+                        <div class="skills advanced">Professional Experience</div>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+
+        <div class='skillColumn'>
+            <div class='skill'>
+                <div class='skill-container'>    
+                        <div class='skillName'>Data</div>
+
+                    <p>SQL<span style='color: rgb(78, 78, 78);'>&nbsp;&nbsp;PostgreSQL, SQLite, MySQL, cx_Oracle</span></p>
+                    <div class="container">
+                        <div class="skills advanced">Professional Experience</div>
+                    </div>
+                
+                    <p>NoSQL<span style='color: rgb(78, 78, 78);'>&nbsp;&nbsp;MongoDB/PyMongo</span></p>
+                    <div class="container">
+                        <div class="skills novice">Coursework</div>
+                    </div>
+
+                    <p>R<span style='color: rgb(78, 78, 78);'></span></p>
+                    <div class="container">
+                        <div class="skills novice">Coursework</div>
+                    </div>
+        
+                </div>
+            </div>
+        </div>
+
+        <div class='skillColumn'>
+            <div class='skill'>
+                <div class='skill-container'>    
+                    <div class='skillName'>Tools</div>
+
+                    <p>Git</p>
+                    <div class="container">
+                        <div class="skills advanced">Professional Experience</div>
+                    </div>
+                
+                    <!-- <p>Jira</p>
+                    <div class="container">
+                        <div class="skills novice">Novice</div>
+                    </div> -->
+
+                    <p>Unix</p>
+                    <div class="container">
+                        <div class="skills advanced">Professional Experience</div>
+                    </div>
+                
+                    <p>Docker</p>
+                    <div class="container">
+                        <div class="skills novice">Coursework</div>
+                    </div>
+        
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class='skillbox'>
+        <!-- TODO: redo skills (remove bars) -->
+    </div>
+
+    <div class='section'>
+        <hr class='line'/>
+        <h1 id='Experience'>Experience</h1>
+        <hr class='line'/>
+    </div>
+
+
+
+    <div class='expRow'>
+
+        <div class='expColumn'>
+            <div class='exp'>
+                    <span style='letter-spacing: 2px; font-size: 18px;'>Software Engineering Intern</span><span style='color: rgb(78, 78, 78);'> Air-Weigh</span>
+                    <br/>
+                <br/>
+                Implemented and deployed a variety of features and improvements for a SaaS cloud-based application, <br/>
+                including report customization, embedded map integration, and GUI enhancements. <br/>
+                Gained Full-Stack experience with an AWS-hosted Java/Spring/Hibernate backend and a JavaScript/jsp frontend.
+            </div>
+        </div>
+
+        <div class='expColumn'>
+            <div class='exp'>
+                    <span style='letter-spacing: 2px; font-size: 18px;'>Software Engineering Intern</span><span style='color: rgb(78, 78, 78);'> TDS Telecommunications</span>
+                    <br/>
+                <br/>
+                Developed capacity reporting software using Agile methodologies.<br/>
+                Wrote Python scripts and SQL to automate the consolidation and reporting of crucial network capacity data.<br/>
+                Rewrote legacy Perl, shell, and SQL code into scalable, maintainable Python scripts.
+            </div>
+        </div>
+
+
+    </div>
+
+    <div id='tr-footer'></div>
+
+    <div id='footer' class="footer">
+        <!-- <p>Footer</p> -->
+        <ol class='navbar'>
+            <li class='signature' style='float:left'>Designed and Built by Noah Tigner</li>
+            <li>nzt@cs.uoregon.edu</li>
+            <li><a href="https://www.linkedin.com/in/noahtigner/" target='_blank'>LinkedIn</a></li>
+            <li><a href="https://https://github.com/noahtigner" target='_blank'>GitHub</a></li>
+        </ol>
+    </div>
+
+    <script src={{ url_for('static', filename='js/cards.js') }}></script>
+    
+</body>
 </html>

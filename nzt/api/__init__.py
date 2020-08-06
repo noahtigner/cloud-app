@@ -4,19 +4,43 @@ from flask import (
 )
 
 from nzt.db import db_query
-from nzt.auth import login_required
+from nzt.auth import login_required, token_required
 
 
 bp = Blueprint('api', __name__, url_prefix="/api")
+led_on = True
 
-@bp.route('/time', methods=('GET', 'POST'))
+@bp.route('/time', methods=['GET', 'POST'])
+@token_required
 def api_get_current_time():
     return {'time': time.time()}
 
-@bp.route("/db", methods=("GET", "POST"))
+@bp.route("/db", methods=["GET", "POST"])
 @login_required
 def api_get_db():
     users = [[item for item in row] for row in db_query("""SELECT * FROM "user" """)]
     visits = [[item for item in row] for row in db_query(""" SELECT * FROM "visits" """)]
 
     return {'users': users, 'visits': visits}
+
+@bp.route("/dash", methods=["GET", "POST"])
+# @token_required
+def api_dash():
+    return render_template('api/dash.html')
+
+@bp.route("/led_status", methods=["GET", "POST"])
+# @token_required
+def api_get_led_status():
+    global led_on
+    return {"led_on": led_on}
+
+@bp.route("/led_toggle", methods=['GET', 'POST'])
+# @token_required
+def api_led_toggle():
+    global led_on
+    b = request.args.get('on', None)
+    led_on = b if b is not None else False
+    return {"led_on": led_on}
+
+    
+
