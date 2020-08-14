@@ -22,7 +22,7 @@ function Login() {
         e.preventDefault();
         e.stopPropagation();
         if (e.target.checkValidity()) {
-            fetchData('http://127.0.0.1:5000/auth/api-login', {
+            fetchData('https://noahtigner.com/auth/api-login', {
                 method: 'POST',
                 body: JSON.stringify({
                     "username": state.username,
