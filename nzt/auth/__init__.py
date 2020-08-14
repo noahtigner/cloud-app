@@ -4,6 +4,7 @@ import datetime
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for, jsonify
 )
+from flask_cors import cross_origin
 from werkzeug.security import check_password_hash, generate_password_hash
 import jwt
 
@@ -16,16 +17,6 @@ bp = Blueprint("auth", __name__, url_prefix="/auth")
 ################################################################################################################################
 ### Decorators   
 ###
-
-def login_required(view):
-    @functools.wraps(view)
-    def wrapped_view(**kwargs):
-        if g.user is None:
-            return redirect(url_for('auth.login'))
-
-        return view(**kwargs)
-
-    return wrapped_view
 
 def token_required(view):
     @functools.wraps(view)
@@ -43,10 +34,7 @@ def token_required(view):
 
         try:
             data = jwt.decode(token, config["common"]["SECRET_KEY"])
-            # current_user = Users.query.filter_by(public_id=data['user_id']).first()
             g.user = db_query(f"""SELECT * FROM "user" WHERE id='{data['user_id']}' """, unique=True)
-            session['user_id'] = g.user['id']
-            # session['token'] = token
         except:
             return jsonify({'message': 'token is invalid'})
 
@@ -54,95 +42,31 @@ def token_required(view):
     return wrapped_view
 
 ################################################################################################################################
-### Helpers   
-###
-
-@bp.before_app_request
-def load_logged_in_user():
-    user_id = session.get('user_id')
-
-    if user_id is None:
-        g.user = None
-    else:
-        g.user = db_query(f"""SELECT * FROM "user" WHERE id='{user_id}' """, unique=True)
-
-################################################################################################################################
 ### Routes   
 ###
 
-@bp.route('/register', methods=('GET', 'POST'))
-def register():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        error = None
+@bp.route("/api-login", methods=['POST'])
+@cross_origin()
+def api_login():
+    print("HERE")
+    print(request.json)
+    print(request.__dict__)
+    data = request.get_json(force=True)
+    print(request.json)
+    print(data)
+    if not ('username' in data and 'password' in data):
+        return {'success': False}, 400
 
-        if not username:
-            error = 'Username is required.'
-        elif not password:
-            error = 'Password is required.'
-        elif db_query(f"""SELECT * FROM "user" WHERE username='{username}' """, unique=True) is not None:
-            error = 'User {} is already registered.'.format(username)
-
-        if error is None:
-            db_query(
-                f"""
-                INSERT INTO "user" (username, password) 
-                VALUES ('{username}', '{generate_password_hash(password)}')
-                """
-            )
-            return redirect(url_for('auth.login'))
-
-        flash(error)
-
-    return render_template('auth/register.html')
-
-@bp.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        error = None
-
-        user = db_query(f"""SELECT * FROM "user" WHERE username='{username}' """, unique=True)
-
-        if user is None:
-            error = 'Incorrect username.'
-        elif not check_password_hash(user['password'], password):
-            error = 'Incorrect password.'
-
-        if error is None:
-            session.clear()
-            session['user_id'] = user['id']
-
-            token = jwt.encode({'user_id': user['id'], 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, config["common"]["SECRET_KEY"])
-
-            response = redirect(url_for('portfolio.index'))
-            response.headers['x-access-tokens'] = token.decode('UTF-8')
-            return response
-
-        flash(error)
-
-    return render_template('auth/login.html')
-
-@bp.route("/logout")
-def logout():
-    session.clear()
-    return redirect(url_for("portfolio.index"))
-
-@bp.route("/token")
-def get_token():
-    error = None
-
-    username = request.args.get('username', None)
-    password = request.args.get('password', None)
+    username = data['username']
+    password = data['password']
 
     user = db_query(f"""SELECT * FROM "user" WHERE username='{username}' """, unique=True)
-
+    
+    error = None
     if user is None:
-        error = 'Incorrect username.'
+        error = 'Incorrect username'
     elif not check_password_hash(user['password'], password):
-        error = 'Incorrect password.'
+        error = 'Incorrect password'
 
     if error is None:
         session.clear()
@@ -150,9 +74,52 @@ def get_token():
 
         token = jwt.encode({'user_id': user['id'], 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, config["common"]["SECRET_KEY"])
 
-        return {'token' : token.decode('UTF-8')}
+        response = {'success': True}, 200, {'x-access-tokens': token.decode('UTF-8'), 'Content-Type': 'application/json', 'access-control-expose-headers': '*'}
+        # response.headers['x-access-tokens'] = token.decode('UTF-8')
+        return response
 
-    flash(error)
-    print(error)
+    return {
+        'success': False,
+        'message': error
+    }, 400
 
-    return render_template('auth/login.html')
+@bp.route('/api-register', methods=['POST'])
+@cross_origin()
+def api_register():
+    data = request.get_json(force=True)
+    # print(data)
+    if not ('username' in data and 'password' in data):
+        return {
+        'success': False,
+        'message': "missing username or password"
+    }, 400
+
+    username = data['username']
+    password = data['password']
+
+    error = None
+
+    if not username:
+        error = 'username is required'
+    elif not password:
+        error = 'password is required'
+    elif db_query(f"""SELECT * FROM "user" WHERE username='{username}' """, unique=True) is not None:
+        error = 'Username \'{}\' is taken'.format(username)
+
+    if error is None:
+        db_query(
+            f"""
+            INSERT INTO "user" (username, password) 
+            VALUES ('{username}', '{generate_password_hash(password)}')
+            """
+        )
+        return {
+            'success': True,
+            'message': 'proceed to login'
+        }, 200
+
+    return {
+        'success': False,
+        'message': error
+    }, 400
+
