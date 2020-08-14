@@ -1,6 +1,6 @@
 from flask import Flask
 
-from nzt import create_app
+from api import create_app
 
 # EB looks for an 'application' callable by default.
 application = create_app()
