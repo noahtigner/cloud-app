@@ -2,7 +2,9 @@
     "common": {
         "author": "Noah Tigner",
         "repo": "todo",
-        "SECRET_KEY" : "liuasdc89989340jkvk"
+        "SECRET_KEY" : "liuasdc89989340jkvk",
+        "STATIC_PATH": "../client/build/static",
+        "TEMPLATE_PATH": "../client/build"
     },
     "database": {
         "host": "aa156riberka5ft.cymobh4afvyw.us-west-2.rds.amazonaws.com",

@@ -9,9 +9,9 @@ from .util.utilities import my_print as print
 
 
 def create_app():
-    application = Flask(__name__)
-
     util.load_config("config.json")
+    
+    application = Flask(__name__, template_folder=util.config["common"]["TEMPLATE_PATH"], static_folder=util.config["common"]["STATIC_PATH"]) 
 
     application.config.from_mapping(
         SECRET_KEY=util.config["common"]["SECRET_KEY"]
