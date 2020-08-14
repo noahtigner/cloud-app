@@ -1,0 +1,13 @@
+{
+    "common": {
+        "author": "Noah Tigner",
+        "repo": "todo",
+        "SECRET_KEY" : "liuasdc89989340jkvk"
+    },
+    "database": {
+        "host": "aa156riberka5ft.cymobh4afvyw.us-west-2.rds.amazonaws.com",
+        "database": "ebdb",
+        "user": "noahtigner",
+        "password": "Ssid231775!"
+    }
+}
