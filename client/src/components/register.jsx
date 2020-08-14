@@ -31,7 +31,6 @@ function Register() {
                     // "email": state.email,
                     "password": state.password
                 }),
-                credentials: 'same-origin',
                 headers: {"Content-Type": "application/json"}
             }).then(data => {
                 console.log("success: ", data);
