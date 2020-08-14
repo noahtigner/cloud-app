@@ -28,7 +28,6 @@ function Login() {
                     "username": state.username,
                     "password": state.password
                 }),
-                credentials: 'same-origin',
                 headers: {"Content-Type": "application/json"}
             }).then(data => {
                 console.log("success: ", data);
