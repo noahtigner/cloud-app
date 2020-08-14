@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { useHistory } from "react-router-dom";
 import fetchData from "./fetchData";
+import { Form, FormGroup, Label, Input } from 'reactstrap';
 
 function Register() {
     const [state, setState] = useState({
@@ -44,12 +45,12 @@ function Register() {
     }
 
     return(
-        <form className="needs-validation" onSubmit={handleSubmitClick} noValidate>
+        <Form className="needs-validation" onSubmit={handleSubmitClick} noValidate>
             <h3>Register</h3>
 
-            <div className="form-group">
-                <label>Username</label>
-                <input 
+            <FormGroup>
+                <Label>Username</Label>
+                <Input 
                     type="text" 
                     className="form-control" 
                     id="username" 
@@ -60,11 +61,11 @@ function Register() {
                 />
                 {/* <div className="valid-feedback">Valid.</div> */}
                 {/* <div className="invalid-feedback">Please fill out this field.</div> */}
-            </div>
+            </FormGroup>
 
-            <div className="form-group">
-                <label>Email</label>
-                <input 
+            <FormGroup>
+                <Label>Email</Label>
+                <Input 
                     type="email" 
                     className="form-control" 
                     id="email" 
@@ -73,11 +74,11 @@ function Register() {
                     onChange={handleChange}
                     required
                 />
-            </div>
+            </FormGroup>
 
-            <div className="form-group">
-                <label>Password</label>
-                <input 
+            <FormGroup>
+                <Label>Password</Label>
+                <Input 
                     type="password" 
                     className="form-control" 
                     id="password"
@@ -86,11 +87,11 @@ function Register() {
                     onChange={handleChange}
                     required
                 />
-            </div>
+            </FormGroup>
             
-            <div className="form-group" >
-                <label>Confirm Password</label>
-                <input 
+            <FormGroup>
+                <Label>Confirm Password</Label>
+                <Input 
                     type="password" 
                     className="form-control" 
                     id="confirmPassword" 
@@ -101,11 +102,11 @@ function Register() {
                     required
                 />
                 <div className="invalid-feedback">Passwords must match</div>
-            </div>
+            </FormGroup>
 
             <br/>
             <button type="submit" className="btn btn-primary btn-block">Submit</button>
-        </form>
+        </Form>
     )
 }
 

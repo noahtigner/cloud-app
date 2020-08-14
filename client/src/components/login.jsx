@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { useHistory } from "react-router-dom";
 import fetchData from "./fetchData";
+import { Form, FormGroup, Label, Input } from 'reactstrap';
 
 function Login() {
     const [state, setState] = useState({
@@ -42,12 +43,12 @@ function Login() {
     }
 
     return(
-        <form className="needs-validation" onSubmit={handleSubmitClick} noValidate>
+        <Form className="needs-validation" onSubmit={handleSubmitClick} noValidate>
             <h3>Login</h3>
 
-            <div className="form-group">
-                <label>Username</label>
-                <input type="text" 
+            <FormGroup>
+                <Label>Username</Label>
+                <Input type="text" 
                     className="form-control" 
                     id="username" 
                     placeholder="Enter Username" 
@@ -57,11 +58,11 @@ function Login() {
                 />
                 {/* <div className="valid-feedback">Valid.</div> */}
                 {/* <div className="invalid-feedback">Please fill out this field.</div> */}
-            </div>
+            </FormGroup>
 
-            <div className="form-group">
-                <label>Password</label>
-                <input 
+            <FormGroup>
+                <Label>Password</Label>
+                <Input 
                     type="password" 
                     className="form-control" 
                     id="password" 
@@ -72,10 +73,10 @@ function Login() {
                 />
                 {/* <div className="valid-feedback">Valid.</div> */}
                 {/* <div className="invalid-feedback">Please fill out this field.</div> */}
-            </div>
+            </FormGroup>
             <br/>
             <button type="submit" className="btn btn-primary btn-block">Submit</button>
-        </form>
+        </Form>
     )
 }
 
