@@ -24,7 +24,7 @@ function Register() {
         e.preventDefault();
         e.stopPropagation();
         if (e.target.checkValidity()) {
-            fetchData('https://noahtigner.com/auth/api-register', {
+            fetchData('https://www.noahtigner.com/auth/api-register', {
                 method: 'POST',
                 body: JSON.stringify({
                     "username": state.username,
