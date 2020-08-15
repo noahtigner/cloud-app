@@ -12,15 +12,15 @@ const Portfolio = () => {
     }, []);
 
     const fetchCards = async () => {
-        let token = localStorage.getItem("token");
-        if(token === null) {
-            console.log("token required");
-            alert("/auth/login");
-        }
-        else {
-            fetchData('http://127.0.0.1:5000/portfolio/cards', {
+        // let token = localStorage.getItem("token");
+        // if(token === null) {
+        //     console.log("token required");
+        //     alert("/auth/login");
+        // }
+        // else {
+            fetchData('https://www.noahtigner.com/portfolio/cards', {
                 method: 'GET',
-                headers: {"Content-Type": "application/json", "x-access-tokens": token}
+                headers: {"Content-Type": "application/json"}
             }).then(data => {
                 console.log("success: ", data);
 
@@ -56,7 +56,7 @@ const Portfolio = () => {
             });
 
             
-        }
+        // }
 
     }
 
