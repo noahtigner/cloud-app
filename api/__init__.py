@@ -21,9 +21,10 @@ def create_app():
 
     # Register blueprints & initialize db
     with application.app_context():
-        from . import portfolio, db, auth, api
+        from . import server, portfolio, db, auth, api
         
         db.init_app(application)
+        application.register_blueprint(server.bp)
         application.register_blueprint(portfolio.bp)
         application.register_blueprint(auth.bp)
         application.register_blueprint(api.bp)

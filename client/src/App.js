@@ -4,16 +4,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 
-import Login from "./components/login.jsx";
-import Register from "./components/register.jsx";
+// import Login from "./components/login.jsx";
+// import Register from "./components/register.jsx";
 import Topper from "./components/topper.jsx";
+import Auth from "./components/auth.jsx";
+import Portfolio from "./components/portfolio.jsx";
 
 
 function App() {
     return (
        <React.Fragment>
             <Topper/>
-            <Router>
+            {/* <Router>
                 
                 <div className="auth-wrapper">
                     <div className="auth-inner">
@@ -24,6 +26,12 @@ function App() {
                         </Switch>
                     </div>
                 </div>
+            </Router> */}
+            <Router>
+                <Switch>
+                    <Route path='/auth' component={Auth} />
+                    <Route path='/' component={Portfolio} />
+                </Switch>
             </Router>
         </React.Fragment>
     );
