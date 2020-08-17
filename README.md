@@ -5,20 +5,6 @@ An AWS-based Flask/React application that serves my portfolio website and expose
 
 # Structure
 
-├-- api
-├-- auth
-├-- db
-├-- portfolio
-├-- server
-├-- util
-└-- __init__.py
-
-│
-
-└
-
--
-
 api/
 ├-- api/
 │	└-- __init__.py
