@@ -30,6 +30,12 @@ UPLOAD_FOLDER = '/path/to/the/uploads'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 CARDS = [
     {
+        'img': 'TODO', 
+        'title': 'Cloud API & IoT', 
+        'text': 'TODO Screenshot', 
+        'description': 'A Flask/React/Bootstrap application that serves my portfolio and exposes API endpoints for IoT devices. Hosted on AWS'
+    },
+    {
         'img': 'sitestall.png', 
         'title': 'Sitestall', 
         'text': 'Sitestall Screenshot', 
