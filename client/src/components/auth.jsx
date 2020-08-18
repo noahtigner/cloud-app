@@ -12,8 +12,8 @@ const Auth = () => {
                 <div className="auth-inner">
                     <Switch>
                         <Route exact path='/auth' component={Login} />
-                        <Route path="/auth/login" component={Login} />
-                        <Route path="/auth/register" component={Register} />
+                        <Route exact path="/auth/login" component={Login} />
+                        <Route exact path="/auth/register" component={Register} />
                     </Switch>
                 </div>
             </div>
