@@ -8,18 +8,18 @@ import {
     NavLink,
 } from 'reactstrap';
 
-const Topper = () => {
+const Header = () => {
     return (
         <Navbar light expand="md">
-            <NavbarBrand href={"/"}>noahtigner.com</NavbarBrand>
+            <NavbarBrand href={"/#/"}>noahtigner.com</NavbarBrand>
 
             <Collapse isOpen={true} navbar>
                 <Nav className="ml-auto" navbar>
                     <NavItem>
-                        <NavLink href={"/auth/login"}>Login</NavLink>
+                        <NavLink href={"/#/auth/login"}>Login</NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink href={"/auth/register"}>Register</NavLink>
+                        <NavLink href={"/#/auth/register"}>Register</NavLink>
                     </NavItem>
                 </Nav>
             </Collapse>
@@ -27,4 +27,4 @@ const Topper = () => {
     )
 }
 
-export default Topper;
+export default Header;

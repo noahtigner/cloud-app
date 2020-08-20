@@ -1,8 +1,8 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
-import Login from "./login.jsx";
-import Register from "./register.jsx";
+import Login from "./auth.login.jsx";
+import Register from "./auth.register.jsx";
 
 const Auth = () => {
     return (

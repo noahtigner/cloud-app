@@ -4,6 +4,7 @@
         "repo": "todo",
         "SECRET_KEY" : "liuasdc89989340jkvk",
         "STATIC_PATH": "../client/build/static",
+        "IMAGE_PATH": "../client/build",
         "TEMPLATE_PATH": "../client/build"
     },
     "database": {

@@ -43,6 +43,8 @@ function Login() {
     }
 
     return(
+    // <div className="auth-wrapper">
+    // <div className="auth-inner">
         <Form className="needs-validation" onSubmit={handleSubmitClick} noValidate>
             <h3>Login</h3>
 
@@ -77,6 +79,7 @@ function Login() {
             <br/>
             <button type="submit" className="btn btn-primary btn-block">Submit</button>
         </Form>
+        // </div></div>
     )
 }
 
