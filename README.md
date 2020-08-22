@@ -3,4 +3,4 @@ An AWS-based Flask/React application that serves my portfolio website and expose
 
 ![Software Architecture](stack.PNG "Software Architecture")
 
-[https://noahtigner.com](https://www.noahtigner.com "Portfolio Site")
+<a href="https://noahtigner.com" target="_blank">https://noahtigner.com</a>
