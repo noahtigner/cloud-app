@@ -28,20 +28,20 @@ bp = Blueprint('server', __name__, static_folder='../' + util.config["common"]["
     # return render_template('index.html')
     # return render_template('index.html')
 
-@bp.route("/manifest.json")
-def manifest():
-    return send_from_directory('./build/static', 'manifest.json')
+# @bp.route("/manifest.json")
+# def manifest():
+#     return send_from_directory('./build/static', 'manifest.json')
 
 
-@bp.route('/favicon.ico')
-def favicon():
-    return send_from_directory('./build/static', 'favicon.ico')
+# @bp.route('/favicon.ico')
+# def favicon():
+#     return send_from_directory('./build/static', 'favicon.ico')
 
-@bp.route('/blue.png')
-def b():
+# @bp.route('/blue.png')
+# def b():
     
-    print(os.path.exists('../' + config["common"]["STATIC_PATH"] + 'blue.png') ,color='red')
-    return bp.send_static_file('blue.png')
+#     print(os.path.exists('../' + config["common"]["STATIC_PATH"] + 'blue.png') ,color='red')
+#     return bp.send_static_file('blue.png')
 
 # @bp.route('/', defaults={'path': ''})
 @bp.route('/<path:path>')
