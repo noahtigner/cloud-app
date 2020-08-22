@@ -7,8 +7,10 @@ from werkzeug.utils import secure_filename
 
 from api.db import db_query
 from api.util import config
+from .. import util
+from ..util.utilities import my_print as print
 
-bp = Blueprint('server', __name__)
+bp = Blueprint('server', __name__, static_folder='../' + util.config["common"]["STATIC_PATH"])
 
 # @bp.route('/')
 # def index():
@@ -37,28 +39,22 @@ def favicon():
 
 @bp.route('/blue.png')
 def b():
-    if os.path.exists(config["common"]["STATIC_PATH"] + '/blue.png'):
-        print("HERE", color='red')
-    if os.path.exists('./build/static/blue.png'):
-        print("HERE", color='red')
-    if os.path.exists('../build/static/blue.png'):
-        print("HERE", color='red')
-    if os.path.exists('../client/build/static/blue.png'):
-        print("HERE", color='red')
+    
+    print(os.path.exists('../' + config["common"]["STATIC_PATH"] + 'blue.png') ,color='red')
+    return bp.send_static_file('blue.png')
 
-    return send_from_directory('./build/static', 'blue.png')
-
-@bp.route('/', defaults={'path': ''})
+# @bp.route('/', defaults={'path': ''})
 @bp.route('/<path:path>')
 def serve(path):
-    print(config["common"]["IMAGE_PATH"] + '/' + path)
-    if path != "" and os.path.exists(config["common"]["STATIC_PATH"] + '/' + path):
-        return send_from_directory(config["common"]["STATIC_PATH"], path)
-    elif path != "" and os.path.exists('./static/' + path):
-        return send_from_directory('./static', path)
-    else:
-        return send_from_directory(config["common"]["TEMPLATE_PATH"], 'index.html')
+    # print(config["common"]["IMAGE_PATH"] + '/' + path)
+    # if path != "" and os.path.exists(config["common"]["STATIC_PATH"] + '/' + path):
+    #     return send_from_directory(config["common"]["STATIC_PATH"], path)
+    # elif path != "" and os.path.exists('./static/' + path):
+    #     return send_from_directory('./static', path)
+    # else:
+    #     return send_from_directory(config["common"]["TEMPLATE_PATH"], 'index.html')
+    return bp.send_static_file(path)
 
-# @bp.route('/')
-# def index():
-#     return send_from_directory(config["common"]["TEMPLATE_PATH"], 'index.html')
+@bp.route('/')
+def index():
+    return send_from_directory(config["common"]["TEMPLATE_PATH"], 'index.html')
